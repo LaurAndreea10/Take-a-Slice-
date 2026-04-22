@@ -50,6 +50,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,.hero-nav a:focus-
   padding:8px 12px;border:1px solid var(--line-strong);border-radius:999px;
   font-size:11px;letter-spacing:.12em;text-transform:uppercase
 }
+.lang-btn{position:relative;z-index:3;pointer-events:auto}
 .lang-btn.active,.icon-btn[aria-pressed="true"],.btn.primary,.topping-btn.active,.sector-dot.active,.deluxe-top-btn.active{background:var(--citron);color:var(--ink);border-color:var(--citron)}
 .progress-track{position:fixed;left:0;top:0;width:100%;height:3px;z-index:120}
 .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--citron),var(--berry));box-shadow:0 0 14px rgba(214,255,59,.45)}
@@ -97,8 +98,6 @@ input[type=text],select{background:transparent;border:1px solid var(--line-stron
 .foot h3{font-weight:300;font-size:56px;line-height:.95;letter-spacing:-.03em;max-width:680px}
 .foot .sig{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);text-align:right}
 .foot .sig span{color:var(--citron);display:block;margin-top:4px}
-
-/* generic minis */
 svg{display:block}
 .circle-panel{width:min(340px,82vw);height:min(340px,82vw)}
 .info-panel{max-width:320px}
@@ -109,8 +108,6 @@ svg{display:block}
 .center-code .code{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--paper);max-width:230px}
 .center-code .code .acc{color:var(--citron)}
 .center-code .sub{font-family:'Instrument Serif',serif;font-size:14px;color:var(--mute);margin-top:6px;font-style:italic}
-
-/* specific labs */
 #lab-01 .stage,#lab-03 .stage,#lab-05 .stage,#lab-08 .stage,#lab-13 .stage,#lab-14 .stage,#lab-15 .stage,#lab-16 .stage{flex-direction:column}
 #lab-02 .stage,#lab-07 .stage,#lab-09 .stage,#lab-12 .stage{gap:48px}
 .slice-ring,.pie,.vinyl,.day-clock,.planet,.life-chart{position:relative;width:min(340px,82vw);height:min(340px,82vw)}
@@ -208,8 +205,6 @@ svg{display:block}
 .pbox-pizza{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(280px,70vw);height:min(280px,70vw);border-radius:50%;background:radial-gradient(circle at 40% 30%, #e8c58c 0%, #d4a24c 20%, #c23224 25%, #e6523c 60%, #c23224 90%);opacity:0;transition:opacity .4s .4s}
 .pbox.open .pbox-pizza{opacity:1}
 .pbox-lid .stamp{font-style:italic;font-weight:300;font-size:clamp(38px,8vw,64px);color:rgba(214,255,59,.92);transform:rotate(-8deg)}
-
-/* references 17 */
 .references-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;width:100%}
 .ref-card{position:relative;min-height:420px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.00));border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
 .ref-card .ref-top{padding:18px 18px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
@@ -236,8 +231,6 @@ svg{display:block}
 @keyframes throwPizza{0%{transform:scale(.15) translateY(120px) rotate(-18deg);opacity:0}18%{opacity:1}100%{transform:scale(8.2) translateY(0) rotate(26deg);opacity:0}}
 .screen-splat{position:absolute;width:12px;height:12px;border-radius:50%;background:rgba(194,50,36,.92);animation:splat 980ms ease-out forwards}
 @keyframes splat{0%{transform:translate(0,0) scale(.2);opacity:0}20%{opacity:1}100%{transform:translate(var(--sx),var(--sy)) scale(4.2);opacity:0}}
-
-/* 18 deluxe */
 #lab-18 .stage{padding:0}
 .deluxe-shell{width:100%;min-height:560px;display:grid;grid-template-columns:320px 1fr 300px;background:radial-gradient(ellipse 60% 60% at 50% 0%, rgba(214,255,59,.06), transparent 70%),linear-gradient(180deg,#11110f 0%, #181714 100%)}
 .deluxe-side,.deluxe-order{padding:22px;background:rgba(255,255,255,.02)}
@@ -275,12 +268,12 @@ svg{display:block}
 
 <div class="topbar">
   <div class="brand"><span class="dot"></span><span>SLICE · LAB ·/· v2.0</span></div>
-  <div class="meta"><span class="live">Live</span><span id="current-lab-label">1 / 18</span><span>Bucharest · RO</span></div>
+  <div class="meta"><span class="live" data-i18n="live">Live</span><span id="current-lab-label">1 / 18</span><span data-i18n="bucharest">Bucharest · RO</span></div>
   <div class="topbar-actions">
-    <button class="lang-btn active" id="lang-ro" type="button" aria-pressed="true">RO</button>
-    <button class="lang-btn" id="lang-en" type="button" aria-pressed="false">EN</button>
-    <button class="icon-btn" id="sound-toggle" type="button" aria-pressed="false">Sound</button>
-    <button class="icon-btn" id="autoplay-toggle" type="button" aria-pressed="false">Shuffle</button>
+    <button type="button" class="lang-btn active" id="lang-ro" aria-pressed="true">RO</button>
+    <button type="button" class="lang-btn" id="lang-en" aria-pressed="false">EN</button>
+    <button type="button" class="icon-btn" id="sound-toggle" aria-pressed="false">Sound</button>
+    <button type="button" class="icon-btn" id="autoplay-toggle" aria-pressed="false">Shuffle</button>
   </div>
 </div>
 
@@ -290,19 +283,19 @@ svg{display:block}
     <div class="orb orb-b"></div>
     <div class="grid-fade"></div>
   </div>
-  <div class="tag">Challenge — tema “slice”</div>
-  <h1><span>Totul</span><br><span>e o</span> <span class="cut">felie</span>.</h1>
-  <p class="lede">Optsprezece interpretări ale <em>tăierii</em> — de la <em>array.slice()</em> până la o planetă în secțiune, un tort cu confetti, pizza pe sectoare, referințe remixate și un joc nou de delivery construit direct în pagină. Fiecare demo e complet, interactiv și reconstruit ca un single-file lab.</p>
-  <div class="hero-quote">„A tăia nu înseamnă doar a împărți. Înseamnă și a revela.”</div>
+  <div class="tag" data-i18n="challenge">Challenge — tema “slice”</div>
+  <h1><span data-i18n="heroLine1">Totul</span><br><span data-i18n="heroLine2">e o</span> <span class="cut" data-i18n="heroCut">felie</span>.</h1>
+  <p class="lede" data-i18n="heroLede">Optsprezece interpretări ale <em>tăierii</em> — de la <em>array.slice()</em> până la o planetă în secțiune, un tort cu confetti, pizza pe sectoare, referințe remixate și un joc nou de delivery construit direct în pagină. Fiecare demo e complet, interactiv și reconstruit ca un single-file lab.</p>
+  <div class="hero-quote" data-i18n="heroQuote">„A tăia nu înseamnă doar a împărți. Înseamnă și a revela.”</div>
   <div class="hero-tools">
-    <button class="btn primary" id="replay-all">Replay all</button>
-    <button class="btn" id="random-lab">Random lab</button>
+    <button type="button" class="btn primary" id="replay-all" data-i18n="replayAll">Replay all</button>
+    <button type="button" class="btn" id="random-lab" data-i18n="randomLab">Random lab</button>
   </div>
   <div class="hero-chips">
-    <button class="chip" data-jump="#lab-04">fruit ninja</button>
-    <button class="chip" data-jump="#lab-11">pizza builder</button>
-    <button class="chip" data-jump="#lab-17">references</button>
-    <button class="chip" data-jump="#lab-18">delivery deluxe</button>
+    <button type="button" class="chip" data-jump="#lab-04">fruit ninja</button>
+    <button type="button" class="chip" data-jump="#lab-11">pizza builder</button>
+    <button type="button" class="chip" data-jump="#lab-17">references</button>
+    <button type="button" class="chip" data-jump="#lab-18">delivery deluxe</button>
   </div>
   <nav class="hero-nav">
     <a href="#lab-01"><span>array.slice</span><span>01</span></a>
@@ -345,7 +338,7 @@ svg{display:block}
       <div class="ctrl"><label>start</label><input type="range" id="s1-start-r" min="-12" max="12" value="0"><span class="val" id="s1-start-v">0</span></div>
       <div class="ctrl"><label>end / deleteCount</label><input type="range" id="s1-end-r" min="-12" max="12" value="12"><span class="val" id="s1-end-v">12</span></div>
       <label class="ctrl">mode<select id="s1-mode"><option value="slice">slice()</option><option value="splice">splice()</option></select></label>
-      <button class="btn" id="s1-reset">reset</button>
+      <button type="button" class="btn" id="s1-reset">reset</button>
     </div>
   </div>
 </section>
@@ -368,7 +361,7 @@ svg{display:block}
   </div>
   <div class="lab-body">
     <div class="stage"><div class="cake-wrap"><div class="cake-top" id="cake-top"></div><div class="slice-out" id="cake-slice-out"></div><div class="candle"></div></div></div>
-    <div class="controls"><button class="btn primary" id="cake-slice">✂ slice</button><button class="btn" id="cake-reset">reset</button><div class="ctrl"><label>felii rămase</label><span class="val" id="cake-count">8</span></div></div>
+    <div class="controls"><button type="button" class="btn primary" id="cake-slice">✂ slice</button><button type="button" class="btn" id="cake-reset">reset</button><div class="ctrl"><label>felii rămase</label><span class="val" id="cake-count">8</span></div></div>
   </div>
 </section>
 
@@ -382,7 +375,7 @@ svg{display:block}
       <div class="ninja-score"><span class="big" id="ninja-score">0</span>score</div>
       <div class="ninja-lives" id="ninja-lives"></div>
       <div class="ninja-hud"><span id="ninja-combo">combo ×1</span><span id="ninja-best">best 0</span></div>
-      <div class="ninja-start" id="ninja-start"><h3>gata?</h3><p>trage peste fructe. evită bombele.</p><button class="btn primary" id="ninja-go">start</button></div>
+      <div class="ninja-start" id="ninja-start"><h3>gata?</h3><p>trage peste fructe. evită bombele.</p><button type="button" class="btn primary" id="ninja-go">start</button></div>
     </div>
   </div></div>
 </section>
@@ -401,7 +394,7 @@ svg{display:block}
   <div class="lab-head"><div><div class="idx">07 / VINYL SLICER</div><h2>Un disc pentru <em>stări</em></h2></div><p class="desc">Opt sectoare, opt piese. Click pe un sector și îl dai mute.</p></div>
   <div class="lab-body"><div class="stage">
     <div class="vinyl circle-panel" id="vinyl"><svg viewBox="-160 -160 320 320" id="vinyl-svg"></svg><div class="needle"></div></div>
-    <div class="vinyl-panel info-panel"><h3>B-side, <em>slower</em></h3><div class="sub">o compilație de opt stări</div><div id="vinyl-tracks"></div><div class="hero-tools"><button class="btn primary" id="vinyl-play">▶ play</button><button class="btn" id="vinyl-all">all on</button></div></div>
+    <div class="vinyl-panel info-panel"><h3>B-side, <em>slower</em></h3><div class="sub">o compilație de opt stări</div><div id="vinyl-tracks"></div><div class="hero-tools"><button type="button" class="btn primary" id="vinyl-play">▶ play</button><button type="button" class="btn" id="vinyl-all">all on</button></div></div>
   </div></div>
 </section>
 
@@ -427,18 +420,18 @@ svg{display:block}
   <div class="lab-head"><div><div class="idx">11 / PIZZA BUILDER</div><h2>Construiește, apoi <em>taie</em></h2></div><p class="desc">Adaugi sos, mozzarella și toppinguri într-un sector ales. Apoi tai pizza în 4, 6 sau 8.</p></div>
   <div class="lab-body">
     <div class="stage"><div class="pizza-wrap"><div class="pizza-base"></div><div class="pizza-sauce" id="pizza-sauce"></div><div class="pizza-cheese" id="pizza-cheese"></div><div id="pizza-sectors"></div><div id="pizza-cut-overlay"></div></div><div class="builder-bar" id="builder-bar"></div></div>
-    <div class="controls"><div class="ctrl"><label>sector</label></div><div class="sector-picker" id="sector-picker"></div><button class="btn" data-slices="4">4</button><button class="btn" data-slices="6">6</button><button class="btn primary" data-slices="8">8</button><button class="btn primary" id="pizza-slice-btn">✂ slice</button><button class="btn" id="pizza-reset">reset</button></div>
+    <div class="controls"><div class="ctrl"><label>sector</label></div><div class="sector-picker" id="sector-picker"></div><button type="button" class="btn" data-slices="4">4</button><button type="button" class="btn" data-slices="6">6</button><button type="button" class="btn primary" data-slices="8">8</button><button type="button" class="btn primary" id="pizza-slice-btn">✂ slice</button><button type="button" class="btn" id="pizza-reset">reset</button></div>
   </div>
 </section>
 
 <section class="lab" id="lab-12" data-quote="Separation clarifies composition.">
   <div class="lab-head"><div><div class="idx">12 / BURGER CROSS-SECTION</div><h2>Straturi <em>separate</em></h2></div><p class="desc">Un burger în secțiune. Apeși separate și ingredientele se depărtează.</p></div>
-  <div class="lab-body"><div class="stage"><div class="burger" id="burger"><div class="layer b-top-bun"></div><div class="layer b-lettuce"></div><div class="layer b-tomato"></div><div class="layer b-cheese"></div><div class="layer b-patty"></div><div class="layer b-onion"></div><div class="layer b-bottom-bun"></div></div></div><div class="controls"><button class="btn primary" id="burger-separate">separă straturile</button><button class="btn" id="burger-assemble">asamblează</button></div></div>
+  <div class="lab-body"><div class="stage"><div class="burger" id="burger"><div class="layer b-top-bun"></div><div class="layer b-lettuce"></div><div class="layer b-tomato"></div><div class="layer b-cheese"></div><div class="layer b-patty"></div><div class="layer b-onion"></div><div class="layer b-bottom-bun"></div></div></div><div class="controls"><button type="button" class="btn primary" id="burger-separate">separă straturile</button><button type="button" class="btn" id="burger-assemble">asamblează</button></div></div>
 </section>
 
 <section class="lab" id="lab-13" data-quote="Pattern becomes alive once time enters.">
   <div class="lab-head"><div><div class="idx">13 / INFINITE RADIAL ART</div><h2>Artă care <em>respiră</em></h2></div><p class="desc">Patru inele concentrice împărțite în felii colorate care se rotesc diferit.</p></div>
-  <div class="lab-body"><div class="stage"><div class="radial-canvas"><svg viewBox="-250 -250 500 500" id="radial-svg"></svg></div></div><div class="controls"><button class="btn primary" id="radial-regen">re-generate</button><div class="ctrl"><label>felii / inel</label><input type="range" id="radial-segs" min="6" max="36" value="18"><span class="val" id="radial-segs-v">18</span></div></div></div>
+  <div class="lab-body"><div class="stage"><div class="radial-canvas"><svg viewBox="-250 -250 500 500" id="radial-svg"></svg></div></div><div class="controls"><button type="button" class="btn primary" id="radial-regen">re-generate</button><div class="ctrl"><label>felii / inel</label><input type="range" id="radial-segs" min="6" max="36" value="18"><span class="val" id="radial-segs-v">18</span></div></div></div>
 </section>
 
 <section class="lab" id="lab-14" data-quote="What gets measured gets shaped.">
@@ -448,12 +441,12 @@ svg{display:block}
 
 <section class="lab" id="lab-15" data-quote="Chance becomes ceremonial once you frame it.">
   <div class="lab-head"><div><div class="idx">15 / PRIZE WHEEL</div><h2>Roata <em>norocului</em></h2></div><p class="desc">Opt felii, opt rezultate. Istoricul păstrează ultimele cinci rezultate.</p></div>
-  <div class="lab-body"><div class="stage"><div class="wheel-wrap"><div class="wheel-pointer"></div><svg class="wheel" viewBox="0 0 360 360" id="wheel-svg"></svg><div class="wheel-center">SPIN</div></div><div class="info-panel"><div class="big" id="wheel-result" style="font-size:32px">apasă spin</div></div></div><div class="controls"><button class="btn primary" id="wheel-spin">spin</button><button class="btn" id="wheel-reset">reset</button><div id="wheel-history"></div></div></div>
+  <div class="lab-body"><div class="stage"><div class="wheel-wrap"><div class="wheel-pointer"></div><svg class="wheel" viewBox="0 0 360 360" id="wheel-svg"></svg><div class="wheel-center">SPIN</div></div><div class="info-panel"><div class="big" id="wheel-result" style="font-size:32px">apasă spin</div></div></div><div class="controls"><button type="button" class="btn primary" id="wheel-spin">spin</button><button type="button" class="btn" id="wheel-reset">reset</button><div id="wheel-history"></div></div></div>
 </section>
 
 <section class="lab" id="lab-16" data-quote="A reveal can be mechanical and still feel warm.">
   <div class="lab-head"><div><div class="idx">16 / PIZZA BOX</div><h2>Cutia <em>se deschide</em></h2></div><p class="desc">Transformări 3D simple. Click pe cutie și capacul se deschide 110°.</p></div>
-  <div class="lab-body"><div class="stage"><div class="pbox" id="pbox" tabindex="0"><div class="pbox-inner"><div class="pbox-bottom"></div><div class="pbox-pizza"></div><div class="pbox-lid"><div class="stamp">Slice Lab</div></div></div></div></div><div class="controls"><button class="btn primary" id="pbox-toggle">deschide / închide</button></div></div>
+  <div class="lab-body"><div class="stage"><div class="pbox" id="pbox" tabindex="0"><div class="pbox-inner"><div class="pbox-bottom"></div><div class="pbox-pizza"></div><div class="pbox-lid"><div class="stamp">Slice Lab</div></div></div></div></div><div class="controls"><button type="button" class="btn primary" id="pbox-toggle">deschide / închide</button></div></div>
 </section>
 
 <section class="lab" id="lab-17" data-quote="A reference can become a coda if it speaks the same language.">
@@ -464,22 +457,22 @@ svg{display:block}
         <div class="ref-top"><div class="ref-kicker">reference 01</div><a class="btn" href="https://codepen.io/Laura-Andreea-the-typescripter/pen/wBzbgva" target="_blank" rel="noreferrer">CodePen</a></div>
         <h3>Ia o <em>felie</em></h3><p>Click pe felii individuale și servește pizza, câte o bucată pe rând.</p>
         <div class="ref-stage"><div class="mini-scene"><div class="mini-pizza" id="served-pizza"></div></div></div>
-        <div class="ref-actions"><button class="btn primary" id="served-reset">reset</button></div>
+        <div class="ref-actions"><button type="button" class="btn primary" id="served-reset">reset</button></div>
       </article>
       <article class="ref-card cheese-card" id="cheese-card">
         <div class="ref-top"><div class="ref-kicker">reference 02</div><a class="btn" href="https://codepen.io/Laura-Andreea-the-typescripter/pen/XJjwpbV" target="_blank" rel="noreferrer">CodePen</a></div>
         <h3>Cheese <em>pull</em></h3><p>Ridici o felie și întinzi un fir topit în sus, apoi îl lași să revină.</p>
         <div class="ref-stage"><div class="pull-wrap"><div class="cheese-base"></div><div class="lift-slice"></div><div class="cheese-string"></div></div></div>
-        <div class="ref-actions"><button class="btn primary" id="cheese-toggle">pull</button></div>
+        <div class="ref-actions"><button type="button" class="btn primary" id="cheese-toggle">pull</button></div>
       </article>
       <article class="ref-card delivery-card" id="delivery-card">
         <div class="ref-top"><div class="ref-kicker">reference 03</div><a class="btn" href="https://codepen.io/Laura-Andreea-the-typescripter/pen/azmrpdK" target="_blank" rel="noreferrer">CodePen</a></div>
         <h3>Reveal de <em>delivery</em></h3><p>Deschizi cutia, revelezi pizza și scoți o felie ca pe un mic element de scenă.</p>
         <div class="ref-stage"><div class="delivery-box"><div class="box-lid">Pizza</div><div class="box-base"></div><div class="box-pizza"></div><div class="delivery-slice"></div></div></div>
-        <div class="ref-actions"><button class="btn primary" id="delivery-toggle">deschide</button></div>
+        <div class="ref-actions"><button type="button" class="btn primary" id="delivery-toggle">deschide</button></div>
       </article>
     </div>
-  </div><div class="controls"><button class="btn primary" id="throw-pizza-btn">aruncă pizza în ecran</button><span class="statline">Un ultim gag bun pentru capătul paginii.</span></div></div>
+  </div><div class="controls"><button type="button" class="btn primary" id="throw-pizza-btn">aruncă pizza în ecran</button><span class="statline">Un ultim gag bun pentru capătul paginii.</span></div></div>
 </section>
 
 <section class="lab" id="lab-18" data-quote="Build first. Cut second. Deliver with style.">
@@ -514,12 +507,12 @@ svg{display:block}
           <div class="deluxe-toppings" id="dx-toppings"></div>
           <div class="deluxe-message" id="dx-message">Prepare the first order.</div>
           <div class="deluxe-bottom">
-            <button class="btn primary" id="dx-start">start game</button>
-            <button class="btn" id="dx-check">check pizza</button>
-            <button class="btn" id="dx-slice-btn">slice for delivery</button>
-            <button class="btn" id="dx-restart">restart</button>
+            <button type="button" class="btn primary" id="dx-start">start game</button>
+            <button type="button" class="btn" id="dx-check">check pizza</button>
+            <button type="button" class="btn" id="dx-slice-btn">slice for delivery</button>
+            <button type="button" class="btn" id="dx-restart">restart</button>
           </div>
-          <div class="deluxe-final" id="dx-final"><div class="deluxe-final-card"><div class="deluxe-kicker">final result</div><h4 id="dx-final-title">Service complete.</h4><div class="deluxe-stars" id="dx-final-stars">⭐⭐⭐</div><p id="dx-final-copy">You finished the run with strong accuracy and clean cuts.</p><div class="hero-tools"><button class="btn primary" id="dx-play-again">play again</button><button class="btn" id="dx-close-final">close</button></div></div></div>
+          <div class="deluxe-final" id="dx-final"><div class="deluxe-final-card"><div class="deluxe-kicker">final result</div><h4 id="dx-final-title">Service complete.</h4><div class="deluxe-stars" id="dx-final-stars">⭐⭐⭐</div><p id="dx-final-copy">You finished the run with strong accuracy and clean cuts.</p><div class="hero-tools"><button type="button" class="btn primary" id="dx-play-again">play again</button><button type="button" class="btn" id="dx-close-final">close</button></div></div></div>
         </main>
         <aside class="deluxe-order">
           <div class="mini">order</div><h3>Customer <em id="dx-customer">#1</em></h3>
@@ -534,53 +527,79 @@ svg{display:block}
 <div class="screen-pizza-overlay" id="screen-pizza-overlay"><div id="screen-sauce"></div><div class="screen-pizza"></div></div>
 
 <footer class="foot">
-  <div><h3 id="footer-title">Un singur verb: <em>slice</em>.<br>Optsprezece interpretări.</h3><div class="foot-tools"><button class="btn primary" id="footer-replay">Replay all</button><button class="btn" id="footer-top">Înapoi sus</button></div></div>
+  <div><h3><span data-i18n="footer1">Un singur verb:</span> <em data-i18n="footerCut">slice</em>.<br><span data-i18n="footer2">Optsprezece interpretări.</span></h3><div class="foot-tools"><button type="button" class="btn primary" id="footer-replay" data-i18n="replayAll">Replay all</button><button type="button" class="btn" id="footer-top" data-i18n="backTop">Înapoi sus</button></div></div>
   <div class="sig">SLICE · LAB<br>Single-file HTML / CSS / JS<br><span>— Laura, 2026 · upgraded bilingual edition</span></div>
 </footer>
 
 <script>
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
-const appState = {sound:false, autoplay:false, autoplayTimer:null, language:'ro'};
+const appState = {sound:false, autoplay:false, autoplayTimer:null, lang:'ro'};
 const sections = $$('.lab');
 const navLinks = $$('.hero-nav a');
 function safeScroll(el){el?.scrollIntoView({behavior:'smooth', block:'start'})}
 $$('.hero-nav a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault(); safeScroll($(a.getAttribute('href')))}));
 $$('.chip[data-jump]').forEach(b=>b.addEventListener('click',()=>safeScroll($(b.dataset.jump))));
 
-const I18N = {
+const i18n = {
   ro: {
-    randomLab: 'Surprinde-mă',
-    replayAll: 'Reia tot',
-    footerTop: 'Înapoi sus',
-    footerTitle: 'Un singur verb: <em>slice</em>.<br>Optsprezece interpretări.'
+    title: 'SLICE LAB — 18 slicing interpretations',
+    live: 'Live',
+    bucharest: 'Bucharest · RO',
+    challenge: 'Challenge — tema “slice”',
+    heroLine1: 'Totul',
+    heroLine2: 'e o',
+    heroCut: 'felie',
+    heroLede: 'Optsprezece interpretări ale <em>tăierii</em> — de la <em>array.slice()</em> până la o planetă în secțiune, un tort cu confetti, pizza pe sectoare, referințe remixate și un joc nou de delivery construit direct în pagină. Fiecare demo e complet, interactiv și reconstruit ca un single-file lab.',
+    heroQuote: '„A tăia nu înseamnă doar a împărți. Înseamnă și a revela.”',
+    replayAll: 'Replay all',
+    randomLab: 'Random lab',
+    footer1: 'Un singur verb:',
+    footerCut: 'slice',
+    footer2: 'Optsprezece interpretări.',
+    backTop: 'Înapoi sus',
+    soundOn: 'Sound on',
+    soundOff: 'Sound off'
   },
   en: {
-    randomLab: 'Random lab',
+    title: 'SLICE LAB — 18 slicing interpretations',
+    live: 'Live',
+    bucharest: 'Bucharest · RO',
+    challenge: 'Challenge — “slice” theme',
+    heroLine1: 'Everything',
+    heroLine2: 'is a',
+    heroCut: 'slice',
+    heroLede: 'Eighteen interpretations of <em>cutting</em> — from <em>array.slice()</em> to a planet cross-section, a confetti cake, sector-based pizza, remixed references, and a new delivery game built directly on the page. Every demo is complete, interactive, and rebuilt as a single-file lab.',
+    heroQuote: '“Cutting does not only divide. It also reveals.”',
     replayAll: 'Replay all',
-    footerTop: 'Back to top',
-    footerTitle: 'One verb: <em>slice</em>.<br>Eighteen interpretations.'
+    randomLab: 'Random lab',
+    footer1: 'One verb only:',
+    footerCut: 'slice',
+    footer2: 'Eighteen interpretations.',
+    backTop: 'Back to top',
+    soundOn: 'Sound on',
+    soundOff: 'Sound off'
   }
 };
 
-function setLanguage(lang){
-  const next = I18N[lang] ? lang : 'ro';
-  appState.language = next;
-  document.documentElement.lang = next;
-  $('#lang-ro').classList.toggle('active', next === 'ro');
-  $('#lang-en').classList.toggle('active', next === 'en');
-  $('#lang-ro').setAttribute('aria-pressed', String(next === 'ro'));
-  $('#lang-en').setAttribute('aria-pressed', String(next === 'en'));
-  $('#random-lab').textContent = I18N[next].randomLab;
-  $('#replay-all').textContent = I18N[next].replayAll;
-  $('#footer-replay').textContent = I18N[next].replayAll;
-  $('#footer-top').textContent = I18N[next].footerTop;
-  $('#footer-title').innerHTML = I18N[next].footerTitle;
+function applyLanguage(lang){
+  appState.lang = lang;
+  document.documentElement.lang = lang;
+  document.title = i18n[lang].title;
+  $$('[data-i18n]').forEach(node => {
+    const key = node.dataset.i18n;
+    if(i18n[lang][key] != null) node.innerHTML = i18n[lang][key];
+  });
+  $('#lang-ro').classList.toggle('active', lang === 'ro');
+  $('#lang-en').classList.toggle('active', lang === 'en');
+  $('#lang-ro').setAttribute('aria-pressed', String(lang === 'ro'));
+  $('#lang-en').setAttribute('aria-pressed', String(lang === 'en'));
+  $('#sound-toggle').textContent = appState.sound ? i18n[lang].soundOn : i18n[lang].soundOff;
 }
-
-$('#lang-ro').addEventListener('click', ()=>setLanguage('ro'));
-$('#lang-en').addEventListener('click', ()=>setLanguage('en'));
-setLanguage('ro');
+$('#lang-ro').addEventListener('click', ()=>applyLanguage('ro'));
+$('#lang-en').addEventListener('click', ()=>applyLanguage('en'));
+$('#lang-ro').addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); applyLanguage('ro'); }});
+$('#lang-en').addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); applyLanguage('en'); }});
 
 const audioEngine = (() => {
   let ctx = null;
@@ -598,7 +617,7 @@ const audioEngine = (() => {
 $('#sound-toggle').addEventListener('click',e=>{
   appState.sound = !appState.sound;
   e.currentTarget.setAttribute('aria-pressed', String(appState.sound));
-  e.currentTarget.textContent = appState.sound ? 'Sound on' : 'Sound off';
+  e.currentTarget.textContent = appState.sound ? i18n[appState.lang].soundOn : i18n[appState.lang].soundOff;
   if(appState.sound) audioEngine.success();
 });
 
@@ -847,13 +866,13 @@ $('#autoplay-toggle').addEventListener('click', e=>{
       const a0=i/nSlices*Math.PI*2-Math.PI/2,a1=(i+1)/nSlices*Math.PI*2-Math.PI/2;
       sec.style.clipPath = `polygon(50% 50%, ${50+50*Math.cos(a0)}% ${50+50*Math.sin(a0)}%, ${50+50*Math.cos(a1)}% ${50+50*Math.sin(a1)}%)`;
       sectorsWrap.appendChild(sec);
-      const dot=document.createElement('button'); dot.className='sector-dot'+(i===activeSector?' active':''); dot.textContent=i+1; dot.addEventListener('click',()=>{activeSector=i; updateSectorPicker(); audioEngine.tick()}); sectorPicker.appendChild(dot);
+      const dot=document.createElement('button'); dot.type='button'; dot.className='sector-dot'+(i===activeSector?' active':''); dot.textContent=i+1; dot.addEventListener('click',()=>{activeSector=i; updateSectorPicker(); audioEngine.tick()}); sectorPicker.appendChild(dot);
       if(!sectorContent[i]) sectorContent[i]=[]; renderSector(i);
     }
   }
-  const sauceBtn=document.createElement('button'); sauceBtn.className='topping-btn'; sauceBtn.innerHTML=`<span style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#c23224"></span>Sos`; sauceBtn.addEventListener('click',()=>{sauce.classList.toggle('on'); sauceBtn.classList.toggle('active'); audioEngine.tick()}); bar.appendChild(sauceBtn);
-  const cheeseBtn=document.createElement('button'); cheeseBtn.className='topping-btn'; cheeseBtn.innerHTML=`<span style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#ffe8a0"></span>Cheese`; cheeseBtn.addEventListener('click',()=>{cheese.classList.toggle('on'); cheeseBtn.classList.toggle('active'); audioEngine.tick()}); bar.appendChild(cheeseBtn);
-  toppings.forEach(t=>{ const b=document.createElement('button'); b.className='topping-btn'; b.innerHTML=`<span style="width:10px;height:10px;border-radius:50%;display:inline-block;background:${t.color}"></span>${t.name}`; b.addEventListener('click',()=>{ sectorContent[activeSector] = sectorContent[activeSector] || []; sectorContent[activeSector].push(t); renderSector(activeSector); audioEngine.pop(); }); bar.appendChild(b); });
+  const sauceBtn=document.createElement('button'); sauceBtn.type='button'; sauceBtn.className='topping-btn'; sauceBtn.innerHTML=`<span style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#c23224"></span>Sos`; sauceBtn.addEventListener('click',()=>{sauce.classList.toggle('on'); sauceBtn.classList.toggle('active'); audioEngine.tick()}); bar.appendChild(sauceBtn);
+  const cheeseBtn=document.createElement('button'); cheeseBtn.type='button'; cheeseBtn.className='topping-btn'; cheeseBtn.innerHTML=`<span style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#ffe8a0"></span>Cheese`; cheeseBtn.addEventListener('click',()=>{cheese.classList.toggle('on'); cheeseBtn.classList.toggle('active'); audioEngine.tick()}); bar.appendChild(cheeseBtn);
+  toppings.forEach(t=>{ const b=document.createElement('button'); b.type='button'; b.className='topping-btn'; b.innerHTML=`<span style="width:10px;height:10px;border-radius:50%;display:inline-block;background:${t.color}"></span>${t.name}`; b.addEventListener('click',()=>{ sectorContent[activeSector] = sectorContent[activeSector] || []; sectorContent[activeSector].push(t); renderSector(activeSector); audioEngine.pop(); }); bar.appendChild(b); });
   $$('#lab-11 [data-slices]').forEach(btn=>btn.addEventListener('click',()=>{ $$('#lab-11 [data-slices]').forEach(b=>b.classList.remove('primary')); btn.classList.add('primary'); nSlices=+btn.dataset.slices; activeSector=0; sectorContent={}; rebuildSectors(); audioEngine.tick(); }));
   $('#pizza-slice-btn').addEventListener('click',()=>{ cutOverlay.innerHTML = `<svg viewBox="0 0 360 360">${Array.from({length:nSlices},(_,i)=>{const a=i/nSlices*Math.PI*2-Math.PI/2; return `<line x1="180" y1="180" x2="${180+180*Math.cos(a)}" y2="${180+180*Math.sin(a)}" stroke="#d6ff3b" stroke-width="2" stroke-dasharray="4 4"/>`;}).join('')}</svg>`; sectorsWrap.querySelectorAll('.pizza-sector').forEach((sec,i)=>{ const mid=((i+.5)/nSlices)*Math.PI*2-Math.PI/2; sec.style.transform=`translate(${Math.cos(mid)*16}px, ${Math.sin(mid)*16}px)`; }); audioEngine.slice(); });
   $('#pizza-reset').addEventListener('click',()=>{ sauce.classList.remove('on'); cheese.classList.remove('on'); sauceBtn.classList.remove('active'); cheeseBtn.classList.remove('active'); sectorContent={}; cutOverlay.innerHTML=''; sectorsWrap.querySelectorAll('.pizza-sector').forEach(sec=>sec.style.transform=''); rebuildSectors(); audioEngine.tick(); });
@@ -906,7 +925,7 @@ $('#autoplay-toggle').addEventListener('click', e=>{
 /* 17 */
 (()=> {
   const served = $('#served-pizza');
-  function buildServed(){ served.innerHTML=''; for(let i=0;i<6;i++){ const s=document.createElement('button'); s.className='mini-slice'; s.style.transform=`rotate(${i*60}deg) translate(-2px,-2px)`; s.addEventListener('click',()=>{ s.classList.add('taken'); audioEngine.slice(); }); served.appendChild(s); } }
+  function buildServed(){ served.innerHTML=''; for(let i=0;i<6;i++){ const s=document.createElement('button'); s.type='button'; s.className='mini-slice'; s.style.transform=`rotate(${i*60}deg) translate(-2px,-2px)`; s.addEventListener('click',()=>{ s.classList.add('taken'); audioEngine.slice(); }); served.appendChild(s); } }
   buildServed(); $('#served-reset').addEventListener('click',()=>{ buildServed(); audioEngine.tick(); });
   $('#cheese-toggle').addEventListener('click',()=>{ $('#cheese-card').classList.toggle('active'); audioEngine.pop(); });
   $('#delivery-toggle').addEventListener('click',()=>{ $('#delivery-card').classList.toggle('active'); audioEngine.success(); });
@@ -922,7 +941,7 @@ $('#autoplay-toggle').addEventListener('click', e=>{
   const el={score:$('#dx-score'),best:$('#dx-best'),combo:$('#dx-combo'),mistakes:$('#dx-mistakes'),round:$('#dx-round'),time:$('#dx-time'),phase:$('#dx-phase'),msg:$('#dx-message'),instruction:$('#dx-instruction-text'),toppings:$('#dx-toppings'),layer:$('#dx-slice-layer'),cut:$('#dx-cut-layer'),orderList:$('#dx-order-list'),customer:$('#dx-customer'),orderCopy:$('#dx-order-copy'),specials:$('#dx-specials'),final:$('#dx-final'),finalTitle:$('#dx-final-title'),finalStars:$('#dx-final-stars'),finalCopy:$('#dx-final-copy')};
   function syncStats(){ el.score.textContent=state.score; el.best.textContent=state.best; el.combo.textContent=`x${state.combo}`; el.mistakes.textContent=state.mistakes; el.round.textContent=`${Math.min(state.round+1,orders.length)}/${orders.length}`; el.time.textContent=state.time; el.phase.textContent=state.phase==='build'?'build mode':'slice mode'; }
   function getOrder(){ return orders[state.round]; }
-  function buildToppings(){ el.toppings.innerHTML=''; toppings.forEach(t=>{ const b=document.createElement('button'); b.className='deluxe-top-btn'+(state.activeTop===t.id?' active':''); b.innerHTML=`<span class="sw" style="width:10px;height:10px;border-radius:50%;display:inline-block;background:${t.color}"></span><span>${t.label}</span>`; b.addEventListener('click',()=>{ state.activeTop=t.id; buildToppings(); audioEngine.tick(); }); el.toppings.appendChild(b); }); }
+  function buildToppings(){ el.toppings.innerHTML=''; toppings.forEach(t=>{ const b=document.createElement('button'); b.type='button'; b.className='deluxe-top-btn'+(state.activeTop===t.id?' active':''); b.innerHTML=`<span class="sw" style="width:10px;height:10px;border-radius:50%;display:inline-block;background:${t.color}"></span><span>${t.label}</span>`; b.addEventListener('click',()=>{ state.activeTop=t.id; buildToppings(); audioEngine.tick(); }); el.toppings.appendChild(b); }); }
   function renderPlaced(){
     [...el.layer.children].forEach((sliceEl,i)=>{ const g=sliceEl.querySelector('.dx-sector-g'); g.querySelectorAll('.dx-top').forEach(n=>n.remove()); const items=state.placed[i]||[]; items.forEach((id,idx)=>{ const t=toppings.find(x=>x.id===id), node=document.createElementNS('http://www.w3.org/2000/svg','circle'); const angle=((i+.5)/state.nSlices)*Math.PI*2-Math.PI/2+(idx-.5)*.18, r=24+idx*9; node.setAttribute('cx',50+Math.cos(angle)*r); node.setAttribute('cy',50+Math.sin(angle)*r); node.setAttribute('r', id==='basil'?3.8:4.8); node.setAttribute('fill',t.color); node.setAttribute('class','dx-top'); g.appendChild(node); }); });
   }
@@ -978,6 +997,8 @@ $('#autoplay-toggle').addEventListener('click', e=>{
   $('#dx-check').addEventListener('click',()=>{ if(state.phase==='build') validateBuild(); }); $('#dx-slice-btn').addEventListener('click',()=>{ if(state.phase==='slice'){ renderCutGuide(); audioEngine.slice(); } });
   buildToppings(); syncStats();
 })();
+
+applyLanguage('ro');
 </script>
 </body>
 </html>
