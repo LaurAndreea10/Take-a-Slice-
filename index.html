@@ -45,7 +45,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,.hero-nav a:focus-
 .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--citron);box-shadow:0 0 12px var(--citron)}
 .meta{display:flex;gap:18px;justify-self:center;flex-wrap:wrap;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--mute)}
 .meta .live{color:var(--citron)} .meta .live::before{content:"●";margin-right:6px;animation:blink 1.6s infinite}
-.topbar-actions{display:flex;gap:8px;justify-self:end;flex-wrap:wrap}
+.topbar-actions{display:flex;gap:8px;justify-self:end;flex-wrap:wrap;position:relative;z-index:2}
 .icon-btn,.lang-btn,.chip,.btn,.badge,.sector-dot,.topping-btn,.deluxe-top-btn{
   padding:8px 12px;border:1px solid var(--line-strong);border-radius:999px;
   font-size:11px;letter-spacing:.12em;text-transform:uppercase
@@ -277,10 +277,10 @@ svg{display:block}
   <div class="brand"><span class="dot"></span><span>SLICE · LAB ·/· v2.0</span></div>
   <div class="meta"><span class="live">Live</span><span id="current-lab-label">1 / 18</span><span>Bucharest · RO</span></div>
   <div class="topbar-actions">
-    <button class="lang-btn active" id="lang-ro">RO</button>
-    <button class="lang-btn" id="lang-en">EN</button>
-    <button class="icon-btn" id="sound-toggle" aria-pressed="false">Sound</button>
-    <button class="icon-btn" id="autoplay-toggle" aria-pressed="false">Shuffle</button>
+    <button class="lang-btn active" id="lang-ro" type="button" aria-pressed="true">RO</button>
+    <button class="lang-btn" id="lang-en" type="button" aria-pressed="false">EN</button>
+    <button class="icon-btn" id="sound-toggle" type="button" aria-pressed="false">Sound</button>
+    <button class="icon-btn" id="autoplay-toggle" type="button" aria-pressed="false">Shuffle</button>
   </div>
 </div>
 
@@ -534,19 +534,53 @@ svg{display:block}
 <div class="screen-pizza-overlay" id="screen-pizza-overlay"><div id="screen-sauce"></div><div class="screen-pizza"></div></div>
 
 <footer class="foot">
-  <div><h3>Un singur verb: <em>slice</em>.<br>Optsprezece interpretări.</h3><div class="foot-tools"><button class="btn primary" id="footer-replay">Replay all</button><button class="btn" id="footer-top">Înapoi sus</button></div></div>
+  <div><h3 id="footer-title">Un singur verb: <em>slice</em>.<br>Optsprezece interpretări.</h3><div class="foot-tools"><button class="btn primary" id="footer-replay">Replay all</button><button class="btn" id="footer-top">Înapoi sus</button></div></div>
   <div class="sig">SLICE · LAB<br>Single-file HTML / CSS / JS<br><span>— Laura, 2026 · upgraded bilingual edition</span></div>
 </footer>
 
 <script>
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
-const appState = {sound:false, autoplay:false, autoplayTimer:null};
+const appState = {sound:false, autoplay:false, autoplayTimer:null, language:'ro'};
 const sections = $$('.lab');
 const navLinks = $$('.hero-nav a');
 function safeScroll(el){el?.scrollIntoView({behavior:'smooth', block:'start'})}
 $$('.hero-nav a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault(); safeScroll($(a.getAttribute('href')))}));
 $$('.chip[data-jump]').forEach(b=>b.addEventListener('click',()=>safeScroll($(b.dataset.jump))));
+
+const I18N = {
+  ro: {
+    randomLab: 'Surprinde-mă',
+    replayAll: 'Reia tot',
+    footerTop: 'Înapoi sus',
+    footerTitle: 'Un singur verb: <em>slice</em>.<br>Optsprezece interpretări.'
+  },
+  en: {
+    randomLab: 'Random lab',
+    replayAll: 'Replay all',
+    footerTop: 'Back to top',
+    footerTitle: 'One verb: <em>slice</em>.<br>Eighteen interpretations.'
+  }
+};
+
+function setLanguage(lang){
+  const next = I18N[lang] ? lang : 'ro';
+  appState.language = next;
+  document.documentElement.lang = next;
+  $('#lang-ro').classList.toggle('active', next === 'ro');
+  $('#lang-en').classList.toggle('active', next === 'en');
+  $('#lang-ro').setAttribute('aria-pressed', String(next === 'ro'));
+  $('#lang-en').setAttribute('aria-pressed', String(next === 'en'));
+  $('#random-lab').textContent = I18N[next].randomLab;
+  $('#replay-all').textContent = I18N[next].replayAll;
+  $('#footer-replay').textContent = I18N[next].replayAll;
+  $('#footer-top').textContent = I18N[next].footerTop;
+  $('#footer-title').innerHTML = I18N[next].footerTitle;
+}
+
+$('#lang-ro').addEventListener('click', ()=>setLanguage('ro'));
+$('#lang-en').addEventListener('click', ()=>setLanguage('en'));
+setLanguage('ro');
 
 const audioEngine = (() => {
   let ctx = null;
